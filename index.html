@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>TIC TAC TOE</title>
+</head>
+<body>
+  <main>
+    <h1>TIC TAC TOE</h1>
+
+    <div id="players-modal" class="modal">
+      <div class="modal-content">
+        <form id="players-form">
+          <label for="player1">PLAYER ONE NAME</label>
+          <input type="text" id="player1-input" name="player1">
+
+          <label for="player2">PLAYER TWO NAME</label>
+          <input type="text" id="player2-input" name="player2">
+
+          <button type="button" id="clear-button">CLEAR</button>
+          <input type="submit" id="submit-button" value="SUBMIT">
+        </div>
+      </form>
+    </div>
+
+    <div id="players-container">
+      <div id="player1-container" class="player-container">
+        <h2 id="player1-heading">PLAYER ONE: X</h2>
+        <p id="player1-name" class="name"></p>
+      </div>
+
+      <div id="player2-container" class="player-container">
+        <h2 id="player2-heading">PLAYER TWO: O</h2>
+        <p id="player2-name" class="name"></p>
+      </div>
+    </div>
+
+    <div id="gameboard-container">
+    </div>
+
+    <div id="winner-announcement">
+    </div>
+
+    <div id="new-game">
+      <button id="new-game-button">NEW GAME</button>
+    </div>
+
+  </main>
+</body>
+<script type="text/javascript" src="main.js"></script>
+</html>
