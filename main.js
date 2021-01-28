@@ -32,15 +32,15 @@ const gameBoard = (function() {
 
 const game = (function() {
   const playersModal = document.getElementById("players-modal");
-  const player1NameInput = document.getElementById("player1-input");
-  const player2NameInput = document.getElementById("player2-input");
+  const playerXNameInput = document.getElementById("playerX-input");
+  const playerONameInput = document.getElementById("playerO-input");
   const clearButton = document.getElementById("clear-button");
   const submitButton = document.getElementById("submit-button");
-  const player1NameDisplay = document.getElementById("player1-name");
-  const player2NameDisplay = document.getElementById("player2-name");
+  const playerXNameDisplay = document.getElementById("playerX-name");
+  const playerONameDisplay = document.getElementById("playerO-name");
   const winnerAnnouncement = document.getElementById("winner-announcement");
-  const player1 = Player("", "X");
-  const player2 = Player("", "O");
+  const playerX = Player("", "X");
+  const playerO = Player("", "O");
   const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -52,7 +52,7 @@ const game = (function() {
     [2, 4, 6]
   ];
   let roundNumber = 1;
-  let activePlayer = player1;
+  let activePlayer = playerX;
   let moves = [];
   let winnerDeclared = false;
 
@@ -70,25 +70,25 @@ const game = (function() {
 
   function clearPlayerNames() {
     event.preventDefault();
-    player1NameInput.value = "";
-    player2NameInput.value = "";
+    playerXNameInput.value = "";
+    playerONameInput.value = "";
   }
 
   function assignPlayerNames() {
     event.preventDefault();
 
-    if (player1NameInput.value == "") { // if left blank, use default name
-      player1.name = "PLAYER ONE";
+    if (playerXNameInput.value == "") { // if left blank, use default name
+      playerX.name = "PLAYER X";
     } else { // otherwise, use the name entered
-      player1NameDisplay.innerHTML = player1NameInput.value;
-      player1.name = player1NameInput.value;
+      playerXNameDisplay.innerHTML = playerXNameInput.value;
+      playerX.name = playerXNameInput.value;
     }
 
-    if (player2NameInput.value == "") {
-      player2.name = "PLAYER TWO";
+    if (playerONameInput.value == "") {
+      playerO.name = "PLAYER O";
     } else {
-      player2NameDisplay.innerHTML = player2NameInput.value;
-      player2.name = player2NameInput.value;
+      playerONameDisplay.innerHTML = playerONameInput.value;
+      playerO.name = playerONameInput.value;
     }
 
     closeModal();
@@ -101,9 +101,9 @@ const game = (function() {
 
   function setActivePlayer() {
     if (roundNumber % 2 == 1) { // odd round numbers
-      activePlayer = player1;
+      activePlayer = playerX;
     } else if (roundNumber % 2 == 0) { // even round numbers
-      activePlayer = player2;
+      activePlayer = playerO;
     }
   }
 
