@@ -8,6 +8,7 @@ const Player = (name, marker) => {
 const gameBoard = (function() {
   const gameBoardContainer = document.querySelector("#gameboard-container");
   const newGameButton = document.querySelector("#new-game-button");
+  const board = Array.from(document.querySelectorAll('tile'));
 
   newGameButton.addEventListener("click", resetBoard);
 
@@ -16,6 +17,7 @@ const gameBoard = (function() {
       let tile = document.createElement("div");
       tile.setAttribute("class", "tile");
       tile.setAttribute("id", [i]);
+      board.push(tile);
       gameBoardContainer.appendChild(tile);
       tile.addEventListener("click", game.playTurn);
     }
@@ -26,7 +28,8 @@ const gameBoard = (function() {
   }
 
   return {
-    makeBoard
+    makeBoard,
+    board
   };
 })();
 
@@ -53,7 +56,6 @@ const game = (function() {
   ];
   let roundNumber = 1;
   let activePlayer = playerX;
-  let moves = [];
   let winnerDeclared = false;
 
   clearButton.addEventListener("click", clearPlayerNames);
@@ -112,7 +114,7 @@ const game = (function() {
       if (this.innerHTML == "") { // only place markers on empty tiles
         let index = this.id;
         this.innerHTML = activePlayer.marker;
-        moves[index] = activePlayer.marker;
+        gameBoard.board[index].innerHTML = activePlayer.marker;
         checkWinner();
         roundNumber++;
         setActivePlayer();
@@ -123,10 +125,10 @@ const game = (function() {
   function checkWinner() {
     for (let i = 0; i < winConditions.length; i++) {
       let winCondition = winConditions[i];
-      let a = moves[winCondition[0]];
-      let b = moves[winCondition[1]];
-      let c = moves[winCondition[2]];
-      if (a == undefined || b == undefined || c == undefined) {
+      let a = gameBoard.board[winCondition[0]].innerHTML;
+      let b = gameBoard.board[winCondition[1]].innerHTML;
+      let c = gameBoard.board[winCondition[2]].innerHTML;
+      if (a == "" || b == "" || c == "") {
         continue; // don't count 3 empty cells as a win
       }
       if (a === b && b === c) {
